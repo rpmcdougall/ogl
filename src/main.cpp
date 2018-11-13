@@ -8,6 +8,8 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+
 using namespace glm;
 
 int main() {
@@ -73,6 +75,31 @@ int main() {
     //Load shaders
     GLuint programID = ShaderUtils::LoadShaders( "shaders/vertex.glsl", "shaders/fragment.glsl" );
 
+
+
+    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f/3.0f, 0.1f, 100.0f );
+    glm::mat4 View = glm::lookAt(
+            glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
+            glm::vec3(0,0,0), // and looks at the origin
+            glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
+    );
+
+    //Model matrix : model will be at origin
+    glm::mat4 Model = glm::mat4(1.0f);
+
+    //MVP : multiplication of 3 matrices
+    glm::mat4 mvp = Projection * View * Model;
+
+    //Provide to GLSL
+    GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+
+
+
+
+
+
+
+
     do {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -81,6 +108,10 @@ int main() {
         glUseProgram(programID);
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+
+        //Send transformation to currently bound shader
+        //Each model will have different mvp matrix, apply in main loop
+        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
         glVertexAttribPointer(
                 0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
                 3,                  // size
@@ -89,6 +120,8 @@ int main() {
                 0,                  // stride
                 (void*)0            // array buffer offset
         );
+
+
 // Draw the triangle !
         glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glDisableVertexAttribArray(0);
