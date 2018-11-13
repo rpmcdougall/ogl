@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ogl.dir/main.cpp.o"
+  "CMakeFiles/ogl.dir/src/main.cpp.o"
   "ogl.pdb"
   "ogl"
 )

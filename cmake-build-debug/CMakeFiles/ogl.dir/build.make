@@ -57,28 +57,30 @@ include CMakeFiles/ogl.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ogl.dir/flags.make
 
-CMakeFiles/ogl.dir/main.cpp.o: CMakeFiles/ogl.dir/flags.make
-CMakeFiles/ogl.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rpmmcdougall/dev/ogl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ogl.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ogl.dir/main.cpp.o -c /Users/rpmmcdougall/dev/ogl/main.cpp
+CMakeFiles/ogl.dir/src/main.cpp.o: CMakeFiles/ogl.dir/flags.make
+CMakeFiles/ogl.dir/src/main.cpp.o: ../src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rpmmcdougall/dev/ogl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ogl.dir/src/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ogl.dir/src/main.cpp.o -c /Users/rpmmcdougall/dev/ogl/src/main.cpp
 
-CMakeFiles/ogl.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ogl.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/rpmmcdougall/dev/ogl/main.cpp > CMakeFiles/ogl.dir/main.cpp.i
+CMakeFiles/ogl.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ogl.dir/src/main.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/rpmmcdougall/dev/ogl/src/main.cpp > CMakeFiles/ogl.dir/src/main.cpp.i
 
-CMakeFiles/ogl.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ogl.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/rpmmcdougall/dev/ogl/main.cpp -o CMakeFiles/ogl.dir/main.cpp.s
+CMakeFiles/ogl.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ogl.dir/src/main.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/rpmmcdougall/dev/ogl/src/main.cpp -o CMakeFiles/ogl.dir/src/main.cpp.s
 
 # Object files for target ogl
 ogl_OBJECTS = \
-"CMakeFiles/ogl.dir/main.cpp.o"
+"CMakeFiles/ogl.dir/src/main.cpp.o"
 
 # External object files for target ogl
 ogl_EXTERNAL_OBJECTS =
 
-ogl: CMakeFiles/ogl.dir/main.cpp.o
+ogl: CMakeFiles/ogl.dir/src/main.cpp.o
 ogl: CMakeFiles/ogl.dir/build.make
+ogl: /usr/local/lib/libGLEW.dylib
+ogl: /usr/local/lib/libGLEW.dylib
 ogl: CMakeFiles/ogl.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rpmmcdougall/dev/ogl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ogl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ogl.dir/link.txt --verbose=$(VERBOSE)

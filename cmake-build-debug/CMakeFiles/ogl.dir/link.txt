@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/ogl.dir/main.cpp.o  -o ogl 
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/ogl.dir/src/main.cpp.o  -o ogl -framework OpenGL -framework OpenGL /usr/local/lib/libGLEW.dylib -lglfw /usr/local/lib/libGLEW.dylib -lglfw 
