@@ -85,6 +85,9 @@
 		<Unit filename="/Users/rpmmcdougall/dev/ogl/src/ShaderUtils.h">
 			<Option target="ogl"/>
 		</Unit>
+		<Unit filename="/Users/rpmmcdougall/dev/ogl/src/controls.h">
+			<Option target="ogl"/>
+		</Unit>
 		<Unit filename="/Users/rpmmcdougall/dev/ogl/src/main.cpp">
 			<Option target="ogl"/>
 		</Unit>

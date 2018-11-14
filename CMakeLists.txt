@@ -22,9 +22,8 @@ link_libraries(${OPENGL_LIBRARIES})
 include_directories(${GLEW_INCLUDE_DIRS})
 link_libraries(${GLEW_LIBRARIES})
 
-
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/src/shaders
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(ogl src/main.cpp src/ShaderUtils.h)
+add_executable(ogl src/main.cpp src/ShaderUtils.h src/controls.h)
 target_link_libraries(ogl glfw ${GLEW_LIBRARIES})

@@ -20,6 +20,16 @@ vector
 iostream
 -
 
+/Users/rpmmcdougall/dev/ogl/src/controls.h
+glm/glm.hpp
+-
+GLFW/glfw3.h
+-
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+
 /Users/rpmmcdougall/dev/ogl/src/main.cpp
 iostream
 -
@@ -37,6 +47,8 @@ glm/glm.hpp
 -
 glm/gtc/matrix_transform.hpp
 -
+controls.h
+/Users/rpmmcdougall/dev/ogl/src/controls.h
 
 /usr/local/include/GL/glew.h
 stddef.h

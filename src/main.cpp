@@ -4,10 +4,13 @@
 #include "ShaderUtils.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+GLFWwindow* window;
+
 
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "controls.h"
 
 
 using namespace glm;
@@ -118,7 +121,6 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL
 
-    GLFWwindow* window;
     window = glfwCreateWindow(1024,768, "OGL", NULL, NULL);
     if(!window) {
         fprintf( stderr, "Failed to open GLFW window.\n" );
@@ -161,24 +163,29 @@ int main() {
 
     //Capture escape key being pressed
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwPollEvents();
+    glfwSetCursorPos(window, 1024/2, 768/2);
+
+
 
     //Load shaders
     GLuint programID = ShaderUtils::LoadShaders( "shaders/vertex.glsl", "shaders/fragment.glsl" );
 
 
 
-    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f/3.0f, 0.1f, 100.0f );
-    glm::mat4 View = glm::lookAt(
-            glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
-            glm::vec3(0,0,0), // and looks at the origin
-            glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-    );
-
-    //Model matrix : model will be at origin
-    glm::mat4 Model = glm::mat4(1.0f);
-
-    //MVP : multiplication of 3 matrices
-    glm::mat4 mvp = Projection * View * Model;
+//    glm::mat4 Projection = glm::perspective(glm::radians(45.0f), 4.0f/3.0f, 0.1f, 100.0f );
+//    glm::mat4 View = glm::lookAt(
+//            glm::vec3(4,3,3), // Camera is at (4,3,3), in World Space
+//            glm::vec3(0,0,0), // and looks at the origin
+//            glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
+//    );
+//
+//    //Model matrix : model will be at origin
+//    glm::mat4 Model = glm::mat4(1.0f);
+//
+//    //MVP : multiplication of 3 matrices
+//    glm::mat4 mvp = Projection * View * Model;
 
     //Provide to GLSL
     GLuint MatrixID = glGetUniformLocation(programID, "MVP");
@@ -196,12 +203,24 @@ int main() {
         //DRAW STUFF HERE
         //Use shader
         glUseProgram(programID);
+
+
+        //recomput matrices for keyboard mouse input
+        ComputeMatrices::computeMatricesFromInputs();
+        glm::mat4 ProjectionMatrix = ComputeMatrices::getProjectionMatrix();
+        glm::mat4 ViewMatrix = ComputeMatrices::getViewMatrix();
+        glm::mat4 ModelMatrix = glm::mat4(1.0);
+        glm::mat4 MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
+
+
+
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 
         //Send transformation to currently bound shader
         //Each model will have different mvp matrix, apply in main loop
-        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &mvp[0][0]);
+        glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
         //Vertex attrib config
         glVertexAttribPointer(
@@ -228,8 +247,11 @@ int main() {
 
         // Draw the triangle !
         //Up to 12 total triangles for each face of a cube
+        glEnable(GL_CULL_FACE);
         glDrawArrays(GL_TRIANGLES, 0, 12*3); // Starting from vertex 0; 3 vertices total -> 1 triangle
         glDisableVertexAttribArray(0);
+
+
 
 
         //Swapbuffers

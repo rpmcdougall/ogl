@@ -3,6 +3,7 @@
 
 CMakeFiles/ogl.dir/src/main.cpp.o
  /Users/rpmmcdougall/dev/ogl/src/ShaderUtils.h
+ /Users/rpmmcdougall/dev/ogl/src/controls.h
  /Users/rpmmcdougall/dev/ogl/src/main.cpp
  /usr/local/include/GL/glew.h
  /usr/local/include/GLFW/glfw3.h
